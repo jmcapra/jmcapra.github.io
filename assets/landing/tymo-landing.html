@@ -89,6 +89,7 @@
         const pointDistance = 50; // Distance between points in the grid
         const highlightRadius = 300; // Radius of the mouse highlight effect
         const baseOpacity = 0.05; // Base opacity of the grid
+        const wobbleAmount = 10; // How much the points wobble initially
 
         // Function to initialize and resize the canvas and points
         function init() {
@@ -106,7 +107,9 @@
                         y: y * pointDistance,
                         originX: x * pointDistance,
                         originY: y * pointDistance,
-                        noise: Math.random() * 10
+                        noise: Math.random() * 20,
+                        // Alignment factor: 0 = max wobble, 1 = perfectly straight
+                        alignment: 0 
                     });
                 }
             }
@@ -120,11 +123,30 @@
             for (let i = 0; i < points.length; i++) {
                 const p1 = points[i];
 
-                // Animate the point's position using a sine wave for smooth, subtle movement
-                const timeFactor = time * 0.0001;
-                p1.x = p1.originX + Math.sin(timeFactor + p1.noise) * 5;
-                p1.y = p1.originY + Math.cos(timeFactor + p1.noise) * 5;
+                // --- Gamification Logic ---
+                // Calculate distance from the point to the mouse cursor
+                const distToMouse = Math.hypot(p1.originX - mouse.x, p1.originY - mouse.y);
+                
+                // If mouse is close, increase alignment towards 1 (straight)
+                if (distToMouse < highlightRadius) {
+                    p1.alignment = Math.min(1, p1.alignment + 0.05);
+                } 
+                // If mouse is far, decrease alignment towards 0 (wobbly)
+                else {
+                    p1.alignment = Math.max(0, p1.alignment - 0.01);
+                }
 
+                // Calculate wobble based on time and noise
+                const timeFactor = time * 0.0001;
+                const wobbleX = Math.sin(timeFactor + p1.noise) * wobbleAmount;
+                const wobbleY = Math.cos(timeFactor + p1.noise) * wobbleAmount;
+
+                // Apply the wobble, reducing it as alignment increases
+                p1.x = p1.originX + wobbleX * (1 - p1.alignment);
+                p1.y = p1.originY + wobbleY * (1 - p1.alignment);
+
+
+                // --- Drawing Logic ---
                 // Find nearby points to connect to
                 for (let j = i + 1; j < points.length; j++) {
                     const p2 = points[j];
@@ -132,21 +154,16 @@
 
                     // If points are close enough, draw a line between them
                     if (distance < pointDistance * 1.5) {
-                        // Calculate the midpoint of the line segment
                         const midX = (p1.x + p2.x) / 2;
                         const midY = (p1.y + p2.y) / 2;
-                        
-                        // Calculate distance from the midpoint to the mouse cursor
-                        const distToMouse = Math.hypot(midX - mouse.x, midY - mouse.y);
+                        const midDistToMouse = Math.hypot(midX - mouse.x, midY - mouse.y);
                         
                         // Calculate opacity based on proximity to the mouse
                         let opacity = 0;
-                        if (distToMouse < highlightRadius) {
-                            // The closer to the mouse, the higher the opacity
-                            opacity = (1 - (distToMouse / highlightRadius)) * 0.4;
+                        if (midDistToMouse < highlightRadius) {
+                            opacity = (1 - (midDistToMouse / highlightRadius)) * 0.4;
                         }
                         
-                        // Ensure a minimum base opacity is always present
                         opacity = Math.max(baseOpacity, opacity);
 
                         ctx.beginPath();

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Another Project by TYMO.ai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712; /* A very dark blue-gray */
+            color: #e5e7eb;
+            cursor: crosshair;
+        }
+        /* The canvas will sit behind all content */
+        #background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        /* The content container needs a higher z-index to be on top of the canvas */
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            /* Added transition for the glassy hover effect */
+            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        /* The glassy hover state */
+        .content-wrapper:hover {
+            border-color: rgba(129, 140, 248, 0.5); /* Brighter indigo border */
+            transform: scale(1.01);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.2);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4 overflow-hidden">
+    
+    <!-- Animated background canvas -->
+    <canvas id="background-canvas"></canvas>
+
+    <!-- Content Wrapper with Neobrutalist style -->
+    <div class="content-wrapper bg-gray-900/50 backdrop-blur-sm border border-gray-700 rounded-lg shadow-2xl shadow-indigo-500/10 p-8 md:p-12 max-w-2xl mx-auto">
+        <div class="text-center">
+            
+            <!-- Logo -->
+            <div class="mb-8">
+                <!-- Ensure you have an 'assets' folder with 'tymo_logo_white.png' inside it. -->
+                <img src="./assets/tymo_logo_white.png" alt="TYMO.ai Logo" class="h-16 mx-auto" onerror="this.style.display='none'">
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-50">Something New is Coming</h1>
+            
+            <p class="text-lg md:text-xl text-gray-400 mb-2">
+                This domain is part of the <a href="https://tymo.ai" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 underline">TYMO.ai</a> ecosystem.
+            </p>
+            
+            <p class="text-md text-gray-500">
+                We are building the next generation of autonomous AI agents. Stay tuned.
+            </p>
+
+        </div>
+    </div>
+
+    <!-- A subtle footer to reinforce the brand -->
+    <footer class="content-wrapper absolute bottom-4 left-0 right-0 text-center text-gray-600 text-sm pointer-events-none">
+        &copy; 2025 TYMO.ai &mdash; All Rights Reserved.
+    </footer>
+
+    <script>
+        // --- Canvas and Mouse Position Setup ---
+        const canvas = document.getElementById('background-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Mouse coordinates, initialized to the center
+        let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+        window.addEventListener('mousemove', e => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        // --- Animated Wireframe Background Script ---
+        let width, height, points;
+        const pointDistance = 50; // Distance between points in the grid
+        const highlightRadius = 300; // Radius of the mouse highlight effect
+        const baseOpacity = 0.05; // Base opacity of the grid
+
+        // Function to initialize and resize the canvas and points
+        function init() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            
+            points = [];
+            const cols = Math.ceil(width / pointDistance) + 1;
+            const rows = Math.ceil(height / pointDistance) + 1;
+
+            for (let y = 0; y < rows; y++) {
+                for (let x = 0; x < cols; x++) {
+                    points.push({
+                        x: x * pointDistance,
+                        y: y * pointDistance,
+                        originX: x * pointDistance,
+                        originY: y * pointDistance,
+                        noise: Math.random() * 10
+                    });
+                }
+            }
+        }
+
+        // Animation loop
+        function animate(time) {
+            ctx.clearRect(0, 0, width, height);
+            
+            // Update points and draw lines
+            for (let i = 0; i < points.length; i++) {
+                const p1 = points[i];
+
+                // Animate the point's position using a sine wave for smooth, subtle movement
+                const timeFactor = time * 0.0001;
+                p1.x = p1.originX + Math.sin(timeFactor + p1.noise) * 5;
+                p1.y = p1.originY + Math.cos(timeFactor + p1.noise) * 5;
+
+                // Find nearby points to connect to
+                for (let j = i + 1; j < points.length; j++) {
+                    const p2 = points[j];
+                    const distance = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+
+                    // If points are close enough, draw a line between them
+                    if (distance < pointDistance * 1.5) {
+                        // Calculate the midpoint of the line segment
+                        const midX = (p1.x + p2.x) / 2;
+                        const midY = (p1.y + p2.y) / 2;
+                        
+                        // Calculate distance from the midpoint to the mouse cursor
+                        const distToMouse = Math.hypot(midX - mouse.x, midY - mouse.y);
+                        
+                        // Calculate opacity based on proximity to the mouse
+                        let opacity = 0;
+                        if (distToMouse < highlightRadius) {
+                            // The closer to the mouse, the higher the opacity
+                            opacity = (1 - (distToMouse / highlightRadius)) * 0.4;
+                        }
+                        
+                        // Ensure a minimum base opacity is always present
+                        opacity = Math.max(baseOpacity, opacity);
+
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(167, 139, 250, ${opacity})`; // Faded purple
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+            requestAnimationFrame(animate);
+        }
+
+        // Initialize on load and handle window resizing
+        window.addEventListener('resize', init);
+        init();
+        requestAnimationFrame(animate);
+    </script>
+</body>
+</html>

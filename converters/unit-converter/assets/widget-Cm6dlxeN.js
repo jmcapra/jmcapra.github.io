@@ -1,0 +1,17 @@
+import{a as e,i as t,n,o as r,r as i,t as a}from"./units-Da2v4PON.js";function o(e){return e.replace(/[&<>"']/g,e=>({"&":`&amp;`,"<":`&lt;`,">":`&gt;`,'"':`&quot;`,"'":`&#39;`})[e]??e)}function s(e,t,n,r){return new Promise(i=>{let a=document.createElement(`div`);a.className=`pick`,a.innerHTML=`
+      <input class="pick-q" type="text" autocomplete="off" spellcheck="false"
+             aria-label="${o(r)}" placeholder="${o(r)}" />
+      <ul class="pick-list" role="listbox"></ul>`;let s=a.querySelector(`.pick-q`),c=a.querySelector(`.pick-list`),l=t,u=Math.max(0,t.findIndex(e=>e.value===n));function d(){c.innerHTML=l.map((e,t)=>`<li role="option" aria-selected="${t===u}" data-v="${o(e.value)}"
+                 class="${t===u?`on`:``}">${o(e.label)}</li>`).join(``),c.children[u]?.scrollIntoView({block:`nearest`})}function f(e){a.remove(),i(e)}s.addEventListener(`input`,()=>{let e=s.value.trim().toLowerCase();l=e?t.filter(t=>`${t.label} ${t.keywords??``}`.toLowerCase().includes(e)):t,u=0,d()}),s.addEventListener(`keydown`,e=>{if(e.key===`ArrowDown`||e.key===`ArrowUp`){if(e.preventDefault(),l.length===0)return;u=(u+(e.key===`ArrowDown`?1:-1)+l.length)%l.length,d()}else e.key===`Enter`?(e.preventDefault(),l[u]&&f(l[u].value)):e.key===`Escape`&&(e.preventDefault(),f(null))}),c.addEventListener(`pointerdown`,e=>{let t=e.target.closest(`li[data-v]`);t&&f(t.getAttribute(`data-v`))}),a.addEventListener(`pointerdown`,e=>{e.target===a&&f(null)}),e.append(a),d(),s.focus()})}var c=document.querySelector(`#gadget`),l=`applets:unit-converter:gadget`;function u(){try{let e=localStorage.getItem(l);if(e)return JSON.parse(e)}catch{}return{d:`length`,from:``,to:``,v:`1`}}var d=u(),f=i(d.d);d.from=d.from&&t(f,d.from).id||f.units[0].id,d.to=d.to&&t(f,d.to).id||f.units[1].id;function p(){try{localStorage.setItem(l,JSON.stringify(d))}catch{}}function m(){return`../?${new URLSearchParams({d:d.d,from:d.from,to:d.to,v:d.v}).toString()}`}function h(){let i=e(d.v);if(!Number.isFinite(i))return`—`;let a=n(i,t(f,d.from),t(f,d.to));return r(a,{maximumSignificantDigits:5})}function g(e){return f.units.find(t=>t.id===e)?.symbol??e}function _(){return f.units.map(e=>({value:e.id,label:`${e.symbol} — ${e.name}`,keywords:e.id}))}function v(){c.innerHTML=`
+    <div class="g">
+      <button type="button" id="d" class="pickbtn" aria-haspopup="listbox">${a.find(e=>e.id===d.d)?.name??d.d}</button>
+
+      <input id="v" inputmode="decimal" aria-label="Amount" value="${d.v.replace(/"/g,`&quot;`)}" />
+      <button type="button" id="from" class="pickbtn" aria-haspopup="listbox">${g(d.from)}</button>
+
+      <output id="out">${h()}</output>
+      <button type="button" id="to" class="pickbtn" aria-haspopup="listbox">${g(d.to)}</button>
+
+      <a class="more" href="${m()}" target="_top">Open converter</a>
+    </div>
+  `,y()}function y(){let e=c.querySelector(`#v`);e.addEventListener(`input`,()=>{d.v=e.value,c.querySelector(`#out`).textContent=h(),c.querySelector(`.more`).href=m(),p()}),c.querySelector(`#d`).addEventListener(`click`,async()=>{let e=await s(c.querySelector(`.g`),a.map(e=>({value:e.id,label:e.name})),d.d,`Measure`);e!==null&&(d.d=e,f=i(d.d),d.from=f.units[0].id,d.to=f.units[1].id,p(),v())});for(let e of[`from`,`to`])c.querySelector(`#${e}`).addEventListener(`click`,async()=>{let t=await s(c.querySelector(`.g`),_(),d[e],e===`from`?`From`:`To`);t!==null&&(d[e]=t,p(),v())})}v();

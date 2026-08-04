@@ -1,0 +1,19 @@
+{
+  "monuments": [
+    { "kind": "arch",        "source": "proc",                                              "colliders": [] },
+    { "kind": "obelisk",     "source": "glb",  "glb": "graveyard-kit/pillar-obelisk.glb",  "scale": 5 },
+    { "kind": "tomb",        "source": "glb",  "glb": "graveyard-kit/crypt.glb",            "scale": 3 },
+    { "kind": "gravestone",  "source": "glb",  "glb": "graveyard-kit/gravestone-bevel.glb", "scale": 2 },
+    { "kind": "column",      "source": "glb",  "glb": "graveyard-kit/column-large.glb",     "scale": 4 },
+    { "kind": "sarcophagus", "source": "glb",  "glb": "graveyard-kit/coffin-old.glb",       "scale": 3 },
+    { "kind": "mausoleum",   "source": "proc",                                              "colliders": [] },
+    { "kind": "plinth",      "source": "proc",                                              "colliders": [] },
+    { "kind": "shrine",      "source": "proc",                                              "colliders": [] }
+  ],
+  "props": [
+    { "kind": "pine",         "source": "glb", "glb": "graveyard-kit/pine.glb" },
+    { "kind": "pine-crooked", "source": "glb", "glb": "graveyard-kit/pine-crooked.glb" },
+    { "kind": "grave",        "source": "glb", "glb": "graveyard-kit/grave.glb" }
+  ],
+  "foliage": []
+}

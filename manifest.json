@@ -1,0 +1,275 @@
+{
+  "site": {
+    "domain": "jmcapra.github.io",
+    "basePath": "/",
+    "title": "jmcapra's Slop Central",
+    "description": "Small tools, games, and experiments."
+  },
+  "categories": [
+    {
+      "id": "calculators",
+      "title": "Calculators",
+      "order": 1
+    },
+    {
+      "id": "converters",
+      "title": "Converters",
+      "order": 2
+    },
+    {
+      "id": "games",
+      "title": "Games",
+      "order": 3
+    },
+    {
+      "id": "experiments",
+      "title": "Experiments",
+      "order": 4
+    },
+    {
+      "id": "tools",
+      "title": "Tools",
+      "order": 5
+    }
+  ],
+  "applets": [
+    {
+      "slug": "tip-split",
+      "category": "calculators",
+      "title": "Tip & Bill Splitter",
+      "description": "Split a bill with tip and rounding, and see what each person owes.",
+      "tags": [
+        "bill",
+        "tip",
+        "dining",
+        "split"
+      ],
+      "status": "live",
+      "created": "2026-07-30",
+      "updated": "2026-08-02",
+      "icon": "🧾",
+      "window": {
+        "width": 560,
+        "height": 620
+      },
+      "url": "/calculators/tip-split/",
+      "sizeKb": 7.3,
+      "noindex": false
+    },
+    {
+      "slug": "roman-numerals",
+      "category": "converters",
+      "title": "Roman Numeral Converter",
+      "description": "Convert between Roman numerals and decimal numbers, both directions.",
+      "tags": [
+        "roman",
+        "numerals",
+        "history"
+      ],
+      "status": "archived",
+      "created": "2026-07-30",
+      "updated": "2026-07-31",
+      "icon": "🏛️",
+      "url": "/converters/roman-numerals/",
+      "sizeKb": 5.4,
+      "noindex": true
+    },
+    {
+      "slug": "unit-converter",
+      "category": "converters",
+      "title": "Unit Converter",
+      "description": "Convert length, mass, temperature, volume, and data between metric and imperial.",
+      "tags": [
+        "units",
+        "metric",
+        "imperial",
+        "temperature"
+      ],
+      "status": "live",
+      "created": "2026-07-30",
+      "updated": "2026-08-04",
+      "icon": "📐",
+      "window": {
+        "width": 620,
+        "height": 500
+      },
+      "widget": {
+        "title": "Quick convert",
+        "description": "One conversion, on the desktop.",
+        "width": 168,
+        "height": 150
+      },
+      "url": "/converters/unit-converter/",
+      "sizeKb": 12.2,
+      "noindex": false
+    },
+    {
+      "slug": "color-lab",
+      "category": "experiments",
+      "title": "Colour Lab",
+      "description": "Build an accessible palette, check WCAG contrast, and copy the tokens straight into your CSS.",
+      "tags": [
+        "colour",
+        "design",
+        "accessibility",
+        "wcag",
+        "contrast"
+      ],
+      "status": "live",
+      "created": "2026-07-30",
+      "updated": "2026-08-02",
+      "icon": "🎨",
+      "window": {
+        "width": 900,
+        "height": 720
+      },
+      "url": "/experiments/color-lab/",
+      "sizeKb": 65.4,
+      "noindex": false
+    },
+    {
+      "slug": "plinko",
+      "category": "games",
+      "title": "Plinko",
+      "description": "Drop a ball through a peg board and watch it bounce into a multiplier slot.",
+      "tags": [
+        "plinko",
+        "physics",
+        "canvas",
+        "arcade"
+      ],
+      "status": "live",
+      "created": "2026-08-01",
+      "updated": "2026-08-02",
+      "icon": "🎰",
+      "window": {
+        "width": 1080,
+        "height": 740
+      },
+      "url": "/games/plinko/",
+      "sizeKb": 70.3,
+      "noindex": false
+    },
+    {
+      "slug": "slop-necropolis",
+      "category": "games",
+      "title": "Slop Necropolis",
+      "description": "A first-person power-washing shooter in a neon graveyard. Clean the grime, fight the slop, survive the round.",
+      "tags": [
+        "3d",
+        "babylonjs",
+        "shooter",
+        "fps",
+        "power-washing"
+      ],
+      "status": "live",
+      "created": "2026-08-01",
+      "updated": "2026-08-02",
+      "icon": "🪦",
+      "window": {
+        "width": 1280,
+        "height": 780
+      },
+      "url": "/games/slop-necropolis/",
+      "sizeKb": 797.3,
+      "noindex": false
+    },
+    {
+      "slug": "ai-ethics-map",
+      "category": "tools",
+      "title": "AI Alignment Chart",
+      "description": "Drag AI applications onto a 3x3 D&D alignment grid, add your own, and export the result as an image.",
+      "tags": [
+        "ai",
+        "ethics",
+        "alignment",
+        "dnd",
+        "drag-and-drop",
+        "chart"
+      ],
+      "status": "live",
+      "created": "2026-07-30",
+      "updated": "2026-08-02",
+      "icon": "🎭",
+      "window": {
+        "width": 1120,
+        "height": 720
+      },
+      "url": "/tools/ai-ethics-map/",
+      "sizeKb": 121.4,
+      "noindex": false
+    },
+    {
+      "slug": "cron-whisperer",
+      "category": "tools",
+      "title": "Cron Whisperer",
+      "description": "Read a cron expression back in plain English and see its next runs in any timezone, DST and all.",
+      "tags": [
+        "cron",
+        "crontab",
+        "schedule",
+        "devops",
+        "timezone"
+      ],
+      "status": "live",
+      "created": "2026-08-03",
+      "updated": "2026-08-04",
+      "icon": "⏰",
+      "window": {
+        "width": 760,
+        "height": 960
+      },
+      "url": "/tools/cron-whisperer/",
+      "sizeKb": 11.8,
+      "noindex": false
+    },
+    {
+      "slug": "overlap",
+      "category": "tools",
+      "title": "Overlap",
+      "description": "Line up any number of timezones on one date and find the hours that suit everyone, half-hour offsets and DST included.",
+      "tags": [
+        "timezone",
+        "meeting",
+        "remote",
+        "scheduling",
+        "dst"
+      ],
+      "status": "live",
+      "created": "2026-08-03",
+      "updated": "2026-08-04",
+      "icon": "🌍",
+      "window": {
+        "width": 1100,
+        "height": 820
+      },
+      "url": "/tools/overlap/",
+      "sizeKb": 11,
+      "noindex": false
+    },
+    {
+      "slug": "token-inspector",
+      "category": "tools",
+      "title": "Token Inspector",
+      "description": "Decode a JWT, read its claims, and see when it expires. The token stays in your browser — nothing is uploaded.",
+      "tags": [
+        "jwt",
+        "auth",
+        "token",
+        "debugging",
+        "oauth"
+      ],
+      "status": "live",
+      "created": "2026-08-03",
+      "updated": "2026-08-03",
+      "icon": "🔑",
+      "window": {
+        "width": 800,
+        "height": 900
+      },
+      "url": "/tools/token-inspector/",
+      "sizeKb": 8.3,
+      "noindex": false
+    }
+  ]
+}

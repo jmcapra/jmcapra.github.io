@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head><script id="applets-theme">(function(){try{var r=document.documentElement,K='applets:theme';try{if(window.self!==window.top)r.dataset.framed=''}catch(e){r.dataset.framed=''}function a(t){if(r.dataset.appletsThemePinned!==undefined)return;r.classList.remove('light','dark');if(t==='light'||t==='dark')r.classList.add(t)}addEventListener('storage',function(e){if(e.key===K)a(e.newValue)});if(r.classList.contains('light')||r.classList.contains('dark')){r.dataset.appletsThemePinned='';return}a(localStorage.getItem(K))}catch(e){}})()</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>MtG Goldfish Companion</title>
+    <meta
+      name="description"
+      content="Solo-playtest a Commander deck against a simulated pod: an aggro clock, end-step hazards that hit the table too, and four life totals to race."
+    />
+
+    <!-- /games/mtg-goldfish/ is substituted by Vite with the base defineApplet() computed. -->
+    <link rel="icon" type="image/svg+xml" href="/games/mtg-goldfish/favicon.svg" />
+    <link rel="apple-touch-icon" href="/games/mtg-goldfish/apple-touch-icon.png" />
+    <link rel="manifest" href="/games/mtg-goldfish/manifest.webmanifest" />
+
+    <!-- Installed, the browser's own bars are the app's. They follow the site
+         preference like everything else, so there is one of these per mode. -->
+    <meta name="theme-color" content="#fbf9f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1c1a17" media="(prefers-color-scheme: dark)" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Goldfish" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <script type="module" crossorigin src="/games/mtg-goldfish/assets/main-B1aV963V.js"></script>
+    <link rel="modulepreload" crossorigin href="/games/mtg-goldfish/assets/store-Dh34A1qb.js">
+    <link rel="stylesheet" crossorigin href="/games/mtg-goldfish/assets/main-BPBirbJO.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  <applets-nav></applets-nav><script id="applets-chrome-script" defer src="/applets-chrome.js" data-base="/"></script></body>
+</html>

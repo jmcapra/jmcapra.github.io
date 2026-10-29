@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Goldfish">
+  <defs>
+    <linearGradient id="tank" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a241b"/>
+      <stop offset="1" stop-color="#141210"/>
+    </linearGradient>
+    <linearGradient id="scale" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#ffd27a"/>
+      <stop offset="0.45" stop-color="#f5a524"/>
+      <stop offset="1" stop-color="#d9741a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#tank)"/>
+
+  <!-- Waterline: the one thing that says "goldfish" rather than "fish". -->
+  <path d="M50 96 C 114 70, 178 122, 242 96 C 306 70, 370 122, 462 92"
+        fill="none" stroke="#7fc9a0" stroke-opacity="0.5" stroke-width="14" stroke-linecap="round"/>
+
+  <g fill="url(#scale)">
+    <path d="M168 286 C 128 244, 96 214, 68 196 C 90 250, 90 344, 68 398 C 98 372, 132 330, 168 286 Z"/>
+    <path d="M288 194 C 264 152, 304 128, 348 138 C 324 156, 312 176, 304 196 Z"/>
+    <ellipse cx="286" cy="286" rx="140" ry="98"/>
+  </g>
+
+  <circle cx="344" cy="258" r="19" fill="#141210"/>
+  <circle cx="351" cy="251" r="6" fill="#fff8ec" fill-opacity="0.9"/>
+
+  <!-- Bubbles: the turn clock, ticking upward. -->
+  <g fill="#7fc9a0" fill-opacity="0.75">
+    <circle cx="424" cy="192" r="12"/>
+    <circle cx="456" cy="156" r="8"/>
+    <circle cx="436" cy="130" r="5"/>
+  </g>
+</svg>

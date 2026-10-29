@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "name": "Foyer",
+  "author": "jmcapra",
+
+  "terrain": {
+    "size": [80, 80],
+    "heightmap": null,
+    "heightScale": 6,
+    "groundMaterial": "marble-pink"
+  },
+
+  "playerSpawn": {
+    "pos": [0, 1.7, -18],
+    "yaw": 0
+  },
+
+  "monuments": [
+    { "id": "m_arch_01",        "kind": "arch",        "pos": [0,    0, -10], "rot": 0 },
+    { "id": "m_column_01",      "kind": "column",      "pos": [-3.5, 0,  -8], "rot": 0 },
+    { "id": "m_column_02",      "kind": "column",      "pos": [3.5,  0,  -8], "rot": 0 },
+    { "id": "m_plinth_01",      "kind": "plinth",      "pos": [0,    0,  -6], "rot": 0 },
+    { "id": "m_obelisk_01",     "kind": "obelisk",     "pos": [-3,   0,  -2], "rot": 0 },
+    { "id": "m_obelisk_02",     "kind": "obelisk",     "pos": [3,    0,  -2], "rot": 0 },
+    { "id": "m_tomb_01",        "kind": "tomb",        "pos": [-12,  0,  -3], "rot": 1.5707963267948966 },
+    { "id": "m_grave_01",       "kind": "gravestone",  "pos": [-9,   0,  -5], "rot": 1.6107963267948966 },
+    { "id": "m_grave_02",       "kind": "gravestone",  "pos": [-9,   0,  -3], "rot": 1.5407963267948966 },
+    { "id": "m_grave_03",       "kind": "gravestone",  "pos": [-9,   0,  -1], "rot": 1.5907963267948966 },
+    { "id": "m_grave_04",       "kind": "gravestone",  "pos": [-6,   0,  -5], "rot": 1.5507963267948966 },
+    { "id": "m_grave_05",       "kind": "gravestone",  "pos": [-6,   0,  -3], "rot": 1.6207963267948966 },
+    { "id": "m_grave_06",       "kind": "gravestone",  "pos": [-6,   0,  -1], "rot": 1.5307963267948966 },
+    { "id": "m_tomb_02",        "kind": "tomb",        "pos": [12,   0,  -3], "rot": -1.5707963267948966 },
+    { "id": "m_grave_07",       "kind": "gravestone",  "pos": [9,    0,  -5], "rot": -1.6107963267948966 },
+    { "id": "m_grave_08",       "kind": "gravestone",  "pos": [9,    0,  -3], "rot": -1.5407963267948966 },
+    { "id": "m_grave_09",       "kind": "gravestone",  "pos": [9,    0,  -1], "rot": -1.5907963267948966 },
+    { "id": "m_grave_10",       "kind": "gravestone",  "pos": [6,    0,  -5], "rot": -1.5507963267948966 },
+    { "id": "m_grave_11",       "kind": "gravestone",  "pos": [6,    0,  -3], "rot": -1.6207963267948966 },
+    { "id": "m_grave_12",       "kind": "gravestone",  "pos": [6,    0,  -1], "rot": -1.5307963267948966 },
+    { "id": "m_sarc_01",        "kind": "sarcophagus", "pos": [-9,   0,   5], "rot": 1.5707963267948966 },
+    { "id": "m_mausoleum_01",   "kind": "mausoleum",   "pos": [0,    0,   7], "rot": 3.141592653589793 },
+    { "id": "m_sarc_02",        "kind": "sarcophagus", "pos": [9,    0,   5], "rot": -1.5707963267948966 },
+    { "id": "m_grave_13",       "kind": "gravestone",  "pos": [-3,   0,  13], "rot": 3.141592653589793 },
+    { "id": "m_grave_14",       "kind": "gravestone",  "pos": [3,    0,  13], "rot": 3.141592653589793 },
+    { "id": "m_shrine_01",      "kind": "shrine",      "pos": [0,    0,  16], "rot": 3.141592653589793 }
+  ],
+
+  "props": [
+    { "id": "p_pine_w1",   "kind": "pine",         "pos": [-16, 0, -13], "rot":  0.10,  "scale": 3.5 },
+    { "id": "p_pine_w2",   "kind": "pine-crooked",  "pos": [-18, 0,  -5], "rot": -0.20,  "scale": 3.0 },
+    { "id": "p_pine_w3",   "kind": "pine",          "pos": [-17, 0,   3], "rot":  0.30,  "scale": 3.5 },
+    { "id": "p_pine_e1",   "kind": "pine",          "pos": [ 16, 0, -13], "rot": -0.10,  "scale": 3.5 },
+    { "id": "p_pine_e2",   "kind": "pine-crooked",  "pos": [ 18, 0,  -5], "rot":  0.20,  "scale": 3.0 },
+    { "id": "p_pine_e3",   "kind": "pine",          "pos": [ 17, 0,   3], "rot": -0.30,  "scale": 3.5 },
+    { "id": "p_pine_n1",   "kind": "pine",          "pos": [ -7, 0,  19], "rot":  0.15,  "scale": 4.0 },
+    { "id": "p_pine_n2",   "kind": "pine",          "pos": [  7, 0,  19], "rot": -0.15,  "scale": 4.0 },
+    { "id": "p_grave_w11", "kind": "grave",         "pos": [ -8, 0,  -5], "rot":  1.5708, "scale": 1.5 },
+    { "id": "p_grave_w12", "kind": "grave",         "pos": [ -8, 0,  -3], "rot":  1.5708, "scale": 1.5 },
+    { "id": "p_grave_w13", "kind": "grave",         "pos": [ -8, 0,  -1], "rot":  1.5708, "scale": 1.5 },
+    { "id": "p_grave_w21", "kind": "grave",         "pos": [ -5, 0,  -5], "rot":  1.5708, "scale": 1.5 },
+    { "id": "p_grave_w22", "kind": "grave",         "pos": [ -5, 0,  -3], "rot":  1.5708, "scale": 1.5 },
+    { "id": "p_grave_w23", "kind": "grave",         "pos": [ -5, 0,  -1], "rot":  1.5708, "scale": 1.5 },
+    { "id": "p_grave_e11", "kind": "grave",         "pos": [  8, 0,  -5], "rot":  1.5708, "scale": 1.5 },
+    { "id": "p_grave_e12", "kind": "grave",         "pos": [  8, 0,  -3], "rot":  1.5708, "scale": 1.5 },
+    { "id": "p_grave_e13", "kind": "grave",         "pos": [  8, 0,  -1], "rot":  1.5708, "scale": 1.5 },
+    { "id": "p_grave_e21", "kind": "grave",         "pos": [  5, 0,  -5], "rot":  1.5708, "scale": 1.5 },
+    { "id": "p_grave_e22", "kind": "grave",         "pos": [  5, 0,  -3], "rot":  1.5708, "scale": 1.5 },
+    { "id": "p_grave_e23", "kind": "grave",         "pos": [  5, 0,  -1], "rot":  1.5708, "scale": 1.5 }
+  ],
+  "foliage": [],
+  "gates": [],
+  "zones": [],
+
+  "pickupAnchors": [
+    { "id": "pa_orb_01",  "kind": "water-orb", "pos": [0,    0.6, -14] },
+    { "id": "pa_orb_02",  "kind": "water-orb", "pos": [-14,  0.6,   0] },
+    { "id": "pa_orb_03",  "kind": "water-orb", "pos": [14,   0.6,   0] },
+    { "id": "pa_orb_04",  "kind": "water-orb", "pos": [0,    0.6,  11] },
+    { "id": "pa_bomb_01", "kind": "bomb",      "pos": [-5,   0.6,   3] },
+    { "id": "pa_bomb_02", "kind": "bomb",      "pos": [5,    0.6,   3] }
+  ],
+
+  "rounds": {
+    "defaults": "standard",
+    "overrides": {}
+  },
+
+  "modifiers": []
+}

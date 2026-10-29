@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Not found · jmcapra's Slop Central</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+<style>
+  :root { color-scheme: dark; --ink:#f2f8ff; --ink-dim:rgba(228,240,252,.72); }
+  * { box-sizing: border-box; }
+  body {
+    margin:0; min-height:100svh; display:grid; place-items:center; padding:16px;
+    background:#04182c; color:var(--ink);
+    font:14px/1.5 'Segoe UI', Frutiger, 'Helvetica Neue', system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wall { position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; }
+
+  /* One dialog, in the shell's glass. Same shape as the desktop's Properties
+     window: thick translucent frame, light panel inset within it. */
+  .dialog {
+    width:min(560px, 100%); max-height:calc(100svh - 32px); display:flex; flex-direction:column;
+    border-radius:8px 8px 4px 4px; padding:0 5px 5px;
+    background:linear-gradient(to bottom, rgba(255,255,255,.2) 0%, rgba(255,255,255,.06) 45%,
+               rgba(160,200,235,.03) 46%, rgba(40,80,120,.1) 100%), rgba(140,180,214,.18);
+    backdrop-filter:saturate(2.4) brightness(1.06) blur(28px);
+    -webkit-backdrop-filter:saturate(2.4) brightness(1.06) blur(28px);
+    border:1px solid rgba(255,255,255,.5);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.7), inset 0 0 0 1px rgba(255,255,255,.16),
+               inset 0 0 22px rgba(180,225,255,.16), 0 20px 50px rgba(0,12,28,.55);
+  }
+
+  .bar { display:flex; align-items:center; gap:8px; height:30px; padding:0 4px 0 8px; flex:none; user-select:none; }
+  .bar b {
+    flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+    font-size:12px; font-weight:400; color:#0d2036;
+    text-shadow:0 0 6px rgba(255,255,255,.9), 0 0 12px rgba(255,255,255,.6), 0 1px 0 rgba(255,255,255,.5);
+  }
+  .bar span { width:16px; text-align:center; font-size:14px; flex:none; }
+  /* Aero's close button, with the only job this page has for it. */
+  .bar a {
+    width:44px; height:20px; display:grid; place-items:center; flex:none;
+    border-radius:3px; border:1px solid rgba(255,190,190,.7); text-decoration:none;
+    background:linear-gradient(to bottom, rgba(255,190,180,.95) 0%, rgba(228,96,74,.95) 48%,
+               rgba(196,46,30,.95) 52%, rgba(226,108,84,.95) 100%);
+    color:#fff; font-size:11px; text-shadow:0 1px 1px rgba(0,0,0,.5);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 1px 2px rgba(0,20,40,.3);
+  }
+  .bar a:hover { filter:brightness(1.2); }
+
+  .body {
+    flex:1; min-height:0; display:flex; flex-direction:column; overflow:hidden;
+    border-radius:3px; background:#f4f7fa; color:#16283a;
+    border:1px solid rgba(0,30,60,.35); box-shadow:inset 0 1px 3px rgba(0,20,40,.22);
+  }
+
+  .hero { display:flex; gap:12px; align-items:flex-start; padding:14px 16px 12px; flex:none;
+          border-bottom:1px solid rgba(0,40,80,.14);
+          background:linear-gradient(to bottom, #fbfdff, #e8eff6); }
+  .hero > span { font-size:30px; line-height:1; }
+  .hero h1 { margin:0; font-size:15px; }
+  .hero p { margin:3px 0 0; font-size:12px; opacity:.72; overflow-wrap:anywhere; }
+
+  .tools { display:flex; gap:6px; padding:8px 10px; flex:none; border-bottom:1px solid rgba(0,40,80,.12); }
+  #q {
+    flex:1; min-width:0; height:30px; padding:0 9px; border-radius:3px;
+    border:1px solid rgba(0,40,80,.28); background:#fff; color:#16283a;
+    font:inherit; font-size:16px;
+  }
+  #q:focus { outline:2px solid rgba(140,205,255,.9); outline-offset:-1px; }
+  .go {
+    flex:none; height:30px; padding:0 12px; display:grid; place-items:center;
+    border-radius:3px; border:1px solid rgba(0,40,80,.28);
+    background:linear-gradient(to bottom, #fff, #dbe6ef);
+    color:#1d4e7a; font:inherit; font-size:12px; text-decoration:none; white-space:nowrap;
+  }
+  .go:hover { background:linear-gradient(to bottom, #fff, #bfd9ee); }
+
+  /* Explorer's rows, so a list of applets looks the same wherever it appears. */
+  ul { flex:1; min-height:0; overflow-y:auto; list-style:none; margin:0; padding:6px; }
+  li a {
+    display:flex; align-items:center; gap:9px; padding:6px 8px; margin-bottom:1px;
+    border:1px solid transparent; border-radius:3px; color:inherit; text-decoration:none;
+  }
+  li a:hover, li a:focus-visible {
+    outline:none; border-color:rgba(120,190,245,.9);
+    background:linear-gradient(to bottom, rgba(226,242,255,.98), rgba(184,219,250,.98));
+  }
+  li i { width:22px; text-align:center; font-size:17px; font-style:normal; flex:none; }
+  li b { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:400; font-size:12px; }
+  li em { flex:none; font-style:normal; font-size:11px; opacity:.5; }
+
+  .status { flex:none; padding:4px 9px; font-size:11px; opacity:.65;
+            border-top:1px solid rgba(0,40,80,.14);
+            background:linear-gradient(to bottom, #eef3f8, #e0e9f1); }
+
+  @media (max-width: 420px) { .hero > span { font-size:24px; } }
+
+  /* Same bargain the shell makes on a touchscreen: bigger targets, nothing
+     else moved (portal/src/shell/aero.css). */
+  @media (pointer: coarse) {
+    li a { padding:10px 8px; }
+    .bar { height:34px; }
+    .bar a { width:54px; height:26px; }
+    .go, #q { height:38px; }
+  }
+</style>
+</head>
+<body>
+<svg class="wall" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="sky" x1=".15" y1="0" x2=".55" y2="1">
+      <stop offset="0%" stop-color="#010a18"/><stop offset="30%" stop-color="#032347"/>
+      <stop offset="58%" stop-color="#064a75"/><stop offset="80%" stop-color="#087a86"/>
+      <stop offset="100%" stop-color="#0a8f6d"/>
+    </linearGradient>
+    <radialGradient id="bloom" cx="50%" cy="50%">
+      <stop offset="0%" stop-color="#e8fff9" stop-opacity=".9"/>
+      <stop offset="18%" stop-color="#96f2e2" stop-opacity=".55"/>
+      <stop offset="45%" stop-color="#3ec8e4" stop-opacity=".26"/>
+      <stop offset="100%" stop-color="#0a5e86" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ribbon" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#59e0c4" stop-opacity="0"/>
+      <stop offset="22%" stop-color="#8ff5df" stop-opacity=".5"/>
+      <stop offset="46%" stop-color="#e6fffa" stop-opacity=".92"/>
+      <stop offset="68%" stop-color="#7fdcff" stop-opacity=".5"/>
+      <stop offset="100%" stop-color="#2e8fd0" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="ribbon2" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1b6fae" stop-opacity="0"/>
+      <stop offset="38%" stop-color="#7fe4ff" stop-opacity=".42"/>
+      <stop offset="62%" stop-color="#c8fff0" stop-opacity=".5"/>
+      <stop offset="100%" stop-color="#8fffd8" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="soft" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="9"/></filter>
+    <filter id="softer" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="60"/></filter>
+    <radialGradient id="vig" cx="46%" cy="52%">
+      <stop offset="50%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity=".52"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <ellipse cx="560" cy="760" rx="820" ry="400" fill="url(#bloom)" filter="url(#softer)"/>
+
+  <g filter="url(#soft)">
+    <path d="M-180 1046 C 250 856, 520 626, 906 414 C 1180 264, 1424 172, 1760 78 L 1760 168 C 1420 262, 1180 356, 916 508 C 546 720, 286 900, -110 1116 Z" fill="url(#ribbon)"/>
+    <path d="M-180 1200 C 300 1010, 640 796, 1020 548 C 1274 382, 1512 288, 1800 214 L 1800 288 C 1500 362, 1266 456, 1010 622 C 640 862, 340 1046, -140 1250 Z" fill="url(#ribbon2)"/>
+  </g>
+
+  <g fill="none">
+    <path d="M-180 1046 C 250 856, 520 626, 906 414 C 1180 264, 1424 172, 1760 78" stroke="#ccfff2" stroke-opacity=".55" stroke-width="7" filter="url(#soft)"/>
+    <path d="M-180 1046 C 250 856, 520 626, 906 414 C 1180 264, 1424 172, 1760 78" stroke="#f4fffd" stroke-opacity=".8" stroke-width="1.6"/>
+  </g>
+
+  <rect width="1600" height="1000" fill="url(#vig)"/>
+</svg>
+<main class="dialog">
+  <div class="bar">
+    <span aria-hidden="true">🧭</span>
+    <b>Not found</b>
+    <a href="/" aria-label="Go to the index">✕</a>
+  </div>
+
+  <div class="body">
+    <div class="hero">
+      <span aria-hidden="true">🚫</span>
+      <div>
+        <h1>That page isn't here</h1>
+        <p id="what"></p>
+      </div>
+    </div>
+
+    <div class="tools">
+      <input id="q" type="search" placeholder="Search applets…" autofocus aria-label="Search applets">
+      <a class="go" href="/">Open the index</a>
+    </div>
+
+    <ul id="results"></ul>
+    <div class="status" id="status"></div>
+  </div>
+</main>
+<script>
+  var BASE = "/";
+  var applets = [];
+  var results = document.getElementById('results');
+  // Named count, not status: a top-level "var status" writes to window.status,
+  // which is a legacy string property, so the element is coerced to a string
+  // and every later assignment to it silently does nothing.
+  var count = document.getElementById('status');
+  var q = document.getElementById('q');
+
+  document.getElementById('what').textContent = location.pathname + location.search;
+
+  function draw(list) {
+    results.innerHTML = list.slice(0, 40).map(function (a) {
+      return '<li><a href="' + a.url + '"><i>' + (a.icon || '▪') + '</i><b>' + a.title +
+             '</b><em>' + a.category + '</em></a></li>';
+    }).join('');
+    count.textContent = list.length === 1 ? '1 applet' : list.length + ' applets';
+  }
+
+  fetch(BASE + 'manifest.json')
+    .then(function (r) { return r.json(); })
+    .then(function (m) { applets = m.applets.filter(function (a) { return a.status === 'live'; }); draw(applets); })
+    .catch(function () { count.textContent = 'Could not load the applet list.'; });
+
+  q.addEventListener('input', function () {
+    var term = q.value.toLowerCase().trim();
+    if (!term) return draw(applets);
+    draw(applets.filter(function (a) {
+      return (a.title + ' ' + a.description + ' ' + a.tags.join(' ') + ' ' + a.category)
+        .toLowerCase().includes(term);
+    }));
+  });
+</script>
+</body>
+</html>

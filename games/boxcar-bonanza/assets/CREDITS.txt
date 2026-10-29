@@ -1,0 +1,9 @@
+Art from the Kenney Game Assets All-in-1 pack — https://kenney.nl
+Licensed CC0 1.0 Universal (public domain dedication).
+
+Packs used:
+  Toon Characters Pack 1     actors/
+  Platformer Pack Redux      crates/
+  Topdown Shooter            weapons/
+  Particle Pack              fx/
+  Background Elements Redux  parallax/, props/
